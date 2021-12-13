@@ -43,9 +43,12 @@ public class ApiApplication {
 
 			Customers customer4 = customersService.addCustomer("Koninklijke BAM", "Guido",
 					"van Zandt", "06-232-26-7112", "Stationsplein 23",
-					"Amersfoort", "2734VZ", "The Netherlands");*/
+					"Amersfoort", "2734VZ", "The Netherlands");
 
+		};
+	}*/
 }
+
 
 
 

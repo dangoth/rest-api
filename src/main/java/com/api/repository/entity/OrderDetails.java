@@ -15,19 +15,18 @@ import javax.persistence.*;
 @Data
 public class OrderDetails {
 
-    @Column(name = "orderNumber")
     @Id
-    @JoinColumn(name = "orderdetails_orderNumber", nullable = false)
+    @JoinColumn(name = "orderdetails_ordernumber", nullable = false)
     private Long orderNumber;
 
     @Column(name = "productId")
-    @JoinColumn(name = "orderdetails_productId", nullable = false)
+    @JoinColumn(name = "orderdetails_productid", nullable = false)
     private int productId;
 
-    @Column(name = "quantityOrdered")
+    @Column(name = "quantityordered")
     private int quantityOrdered;
 
-    @Column(name = "priceEach")
+    @Column(name = "priceeach")
     private double priceEach;
 
 

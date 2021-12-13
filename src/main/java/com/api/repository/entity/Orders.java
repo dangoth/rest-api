@@ -19,18 +19,16 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "orderId")
     @JoinColumn(name = "order_id", nullable = false)
     private Long orderId;
 
-    @Column(name = "orderDate")
+    @Column(name = "orderdate")
     private LocalDate orderDate;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private StatusEnum statusEnum;
 
-    @Column(name = "customerNumber")
     @JoinColumn(name = "order_customerNumber", nullable = false)
     private int customerNumber;
 

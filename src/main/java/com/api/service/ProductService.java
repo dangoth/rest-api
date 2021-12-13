@@ -48,7 +48,7 @@ public class ProductService {
             if (updatedProduct.getProductPrice() > 0) {
                 newProduct.setProductPrice(updatedProduct.getProductPrice());
             }
-            newProduct.setId(id);
+            newProduct.setProductId(id);
             productRepository.save(newProduct);
             return true;
         }

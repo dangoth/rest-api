@@ -15,26 +15,25 @@ import javax.persistence.*;
 @Data
 public class Product {
 
-    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinColumn(name = "product_id", nullable = false)
-    private Long id;
+    private Long productId;
 
-    @Column(name = "productName")
+    @Column(name = "productname")
     private String productName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "productVendor")
+    @Column(name = "productvendor")
     private VendorEnum vendorEnum;
 
-    @Column(name = "productDescription")
+    @Column(name = "productdescription")
     private String productDescription;
 
-    @Column(name = "productQuantity")
+    @Column(name = "productquantity")
     private int productQuanity;
 
-    @Column(name = "productPrice")
+    @Column(name = "productprice")
     private Double productPrice;
 
 }
