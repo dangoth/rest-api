@@ -1,5 +1,7 @@
 package com.api.controller;
 
+import com.api.dto.CustomersResponse;
+import com.api.dtomapper.CustomerMapper;
 import com.api.repository.CustomersRepository;
 import com.api.repository.entity.Customers;
 import com.api.service.CustomersService;
@@ -23,6 +25,7 @@ public class CustomersController {
 
     private CustomersRepository customersRepository;
     private CustomersService customersService;
+    private CustomerMapper customerMapper;
     private ModelMapper modelMapper;
 
     @GetMapping("/customers")
@@ -31,13 +34,10 @@ public class CustomersController {
     }
 
     @GetMapping("/customers/{id}")
-    public ResponseEntity<Customers> getCustomer(@PathVariable long id) {
+    public ResponseEntity<CustomersResponse> getCustomer(@PathVariable long id) {
         Optional<Customers> result = customersRepository.findById(id);
-        if (result.isPresent()) {
-            return new ResponseEntity<>(result.get(), HttpStatus.OK);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return result.map(customers -> new ResponseEntity<>(customerMapper.convertToCustomerDTO(customers), HttpStatus.OK))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/customers")

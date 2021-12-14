@@ -1,6 +1,8 @@
 package com.api.controller;
 
 import com.api.dto.OrderDetailsRequest;
+import com.api.dto.OrderDetailsResponse;
+import com.api.dtomapper.OrderDetailsMapper;
 import com.api.repository.OrderDetailsRepository;
 import com.api.repository.entity.Customers;
 import com.api.repository.entity.OrderDetails;
@@ -25,16 +27,14 @@ public class OrderDetailsController {
 
     private OrderDetailsRepository orderDetailsRepository;
     private OrderDetailsService orderDetailsService;
+    private OrderDetailsMapper orderDetailsMapper;
     private ModelMapper modelMapper;
 
     @GetMapping("/orderdetails/{id}")
-    public ResponseEntity<OrderDetails> getOrderDetails(@PathVariable long id) {
+    public ResponseEntity<OrderDetailsResponse> getOrderDetails(@PathVariable long id) {
         Optional<OrderDetails> result = orderDetailsRepository.findById(id);
-        if (result.isPresent()) {
-            return new ResponseEntity<>(result.get(), HttpStatus.OK);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return result.map(orderDetails -> new ResponseEntity<>(orderDetailsMapper.convertToOrderDetailsDTO(orderDetails),
+                HttpStatus.OK)).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/orderdetails")

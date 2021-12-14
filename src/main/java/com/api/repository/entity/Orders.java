@@ -29,7 +29,8 @@ public class Orders {
     @Enumerated(EnumType.STRING)
     private StatusEnum statusEnum;
 
-    @JoinColumn(name = "order_customerNumber", nullable = false)
-    private int customerNumber;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "orders_customer")
+    private Customers customer;
 
 }

@@ -1,6 +1,8 @@
 package com.api.controller;
 
 import com.api.dto.ProductRequest;
+import com.api.dto.ProductResponse;
+import com.api.dtomapper.ProductMapper;
 import com.api.repository.ProductRepository;
 import com.api.repository.entity.Product;
 import com.api.service.ProductService;
@@ -25,6 +27,7 @@ public class ProductController {
 
     private ProductRepository productRepository;
     private ProductService productService;
+    private ProductMapper productMapper;
     private ModelMapper modelMapper;
 
     @GetMapping("/products")
@@ -33,13 +36,10 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<?> getProductById(@PathVariable long id) {
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable long id) {
         Optional<Product> result = productRepository.findById(id);
-        if (result.isPresent()) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return result.map(product -> new ResponseEntity<>(productMapper.convertToProductDTO(product), HttpStatus.OK))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/products")

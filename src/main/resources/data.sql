@@ -7,9 +7,9 @@ INSERT INTO Product (product_id, productname, productvendor, productdescription,
 INSERT INTO Product (product_id, productname, productvendor, productdescription, productquantity, productprice) VALUES (3, 'Hammer and Nails', 'CHEVRON', 'Cant get more basic than that', 2320, 8.20);
 INSERT INTO Product (product_id, productname, productvendor, productdescription, productquantity, productprice) VALUES (4, 'Chainsaw', 'HUSQVARNA', 'Good for cutting down trees', 53, 499.99);
 INSERT INTO Product (product_id, productname, productvendor, productdescription, productquantity, productprice) VALUES (5, 'Rusty bucket', 'ELECTROLUX', 'I wouldnt buy it', 1, 7.50);
-INSERT INTO Orders (order_id, orderdate, status, customer_number) VALUES (1, '2020-10-26', 'NEW', 1);
-INSERT INTO Orders (order_id, orderdate, status, customer_number) VALUES (2, '2021-11-11', 'IN_PROGRESS', 2);
-INSERT INTO Orders (order_id, orderdate, status, customer_number) VALUES (3, '2021-5-15', 'SHIPPED', 4);
+INSERT INTO Orders (order_id, orderdate, status, orders_customer) VALUES (1, '2020-10-26', 'NEW', 1);
+INSERT INTO Orders (order_id, orderdate, status, orders_customer) VALUES (2, '2021-11-11', 'IN_PROGRESS', 2);
+INSERT INTO Orders (order_id, orderdate, status, orders_customer) VALUES (3, '2021-5-15', 'SHIPPED', 4);
 INSERT INTO Order_Details (order_number, product_id, quantityordered, priceeach) VALUES (1, 2, 12, 17.50);
 INSERT INTO Order_Details (order_number, product_id, quantityordered, priceeach) VALUES (2, 1, 15, 860.00);
 INSERT INTO Order_Details (order_number, product_id, quantityordered, priceeach) VALUES (3, 4, 1, 499.99);

@@ -1,6 +1,7 @@
 package com.api.service;
 
 import com.api.repository.OrdersRepository;
+import com.api.repository.entity.Customers;
 import com.api.repository.entity.Orders;
 import com.api.repository.entity.StatusEnum;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +20,11 @@ public class OrdersService {
 
     private OrdersRepository ordersRepository;
 
-    private Orders addOrder(LocalDate orderDate, StatusEnum statusEnum, int customerNumber) {
+    private Orders addOrder(LocalDate orderDate, StatusEnum statusEnum, Customers customer) {
         Orders order = Orders.builder()
                 .orderDate(orderDate)
                 .statusEnum(statusEnum)
-                .customerNumber(customerNumber)
+                .customer(customer)
                 .build();
         return ordersRepository.save(order);
     }
@@ -39,8 +40,8 @@ public class OrdersService {
             if (updatedOrder.getStatusEnum() != null) {
                 newOrder.setStatusEnum(updatedOrder.getStatusEnum());
             }
-            if (updatedOrder.getCustomerNumber() > 0) {
-                newOrder.setCustomerNumber(updatedOrder.getCustomerNumber());
+            if (updatedOrder.getCustomer() != null) {
+                newOrder.setCustomer(updatedOrder.getCustomer());
             }
             newOrder.setOrderId(id);
             ordersRepository.save(newOrder);

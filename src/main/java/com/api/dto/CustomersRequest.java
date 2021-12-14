@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class CustomersRequest {
 
     @NotBlank(message = "Please provide a customer name")
-    @Size(min=3, max=12)
+    @Size(min=3, max=20)
     private String customerName;
 
     private String contactFirstName;
