@@ -4,7 +4,6 @@ import com.api.dto.OrderDetailsRequest;
 import com.api.dto.OrderDetailsResponse;
 import com.api.dtomapper.OrderDetailsMapper;
 import com.api.repository.OrderDetailsRepository;
-import com.api.repository.entity.Customers;
 import com.api.repository.entity.OrderDetails;
 import com.api.service.OrderDetailsService;
 import lombok.AllArgsConstructor;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

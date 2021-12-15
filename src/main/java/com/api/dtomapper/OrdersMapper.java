@@ -14,7 +14,6 @@ public class OrdersMapper {
 
     public OrdersResponse convertToOrdersDTO(Orders order) {
         OrdersResponse response = new OrdersResponse();
-        response.setOrderId(order.getOrderId());
         response.setOrderDate(order.getOrderDate());
         response.setStatusEnum(order.getStatusEnum());
         response.setCustomer(order.getCustomer());

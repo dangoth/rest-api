@@ -34,10 +34,6 @@ public class CustomersService {
         return customersRepository.save(customer);
     }
 
-    public List<Customers> getAllCustomers() {
-        return customersRepository.findAll();
-    }
-
     public boolean updateCustomer(long id, Customers updatedCustomer) {
         Optional<Customers> currentCustomer = customersRepository.findById(id);
         if (currentCustomer.isPresent()) {

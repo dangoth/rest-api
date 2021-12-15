@@ -10,8 +10,8 @@ import java.util.Date;
 @Data
 public class OrdersResponse {
 
-    private Long orderId;
     private LocalDate orderDate;
     private StatusEnum statusEnum;
     private Customers customer;
+
 }

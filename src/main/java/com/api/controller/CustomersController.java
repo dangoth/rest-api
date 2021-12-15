@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -29,8 +30,11 @@ public class CustomersController {
     private ModelMapper modelMapper;
 
     @GetMapping("/customers")
-    public List<Customers> getAllCustomers() {
-        return customersService.getAllCustomers();
+    public List<CustomersResponse> getAllCustomers() {
+        List<Customers> customers = customersRepository.findAll();
+        return customers.stream()
+                .map(customer -> customerMapper.convertToCustomerDTO(customer))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/customers/{id}")
@@ -65,10 +69,9 @@ public class CustomersController {
         }
     }
 
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
+    public Map<String, String> handleValidationExceptions (
             MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {

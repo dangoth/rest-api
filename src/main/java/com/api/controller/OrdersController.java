@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -30,8 +31,11 @@ public class OrdersController {
     private ModelMapper modelMapper;
 
     @GetMapping("/orders")
-    public List<Orders> getOrders() {
-        return ordersRepository.findAll();
+    public List<OrdersResponse> getAllOrders() {
+        List<Orders> orders = ordersRepository.findAll();
+        return orders.stream()
+                .map(order -> ordersMapper.convertToOrdersDTO(order))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/orders/{id}")
