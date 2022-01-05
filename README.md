@@ -1,3 +1,3 @@
 # RestAPI
 
-Spring Rest API / JPA / H2
+Spring Boot / JPA / H2
